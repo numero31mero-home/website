@@ -3,83 +3,101 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>NUMERO31</title>
-    <link href="https://fonts.cdnfonts.com/css/reforma-1918" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"><link rel="stylesheet" href="./style.css">
+    <title>Infinite Portals</title>
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
 
   </head>
     
   <body>
-  <body>
-  <header class="header">
-    <div class="flex-wrapper">
-      <div class="logo-wrap">
-        <span class="btn-2">NUMERO</span>
-        <span class="btn-2">31</span>
-      </div>
-      <ul class="header-menu">
-        <li class="header-menu__item header-text-1">
-          history
-        </li>
-        <li class="header-menu__item header-text-1">
-          sns
-        </li>
-      </ul>
-    </div>
-  </header>
-  <section class="hero">
-    <video class="hero-video" autoplay muted loop>
-      <source src="https://pub-6e18488da84d463ca413850d39f42e5b.r2.dev/Sequence%2001_9.mp4" type="video/mp4"/>
-    </video>
-    <div class="container">
-      <div class="title-block">
-        <div class="title-h1">
-          <div class="title-row title-row-1">
-            <div class="title-charts-cont" id="eve"><span>Lig</span></div>
-            <div class="title-charts-cont" id="ry"><span>ht</span></div>
-            <div class="title-charts-cont" id="fo"><span>yo</span></div>
-            <div class="title-charts-cont" id="ssil"><span>ur</span></div>
-          </div>
-          <div class="title-row title-row-2">
-            <div class="title-charts-cont" id="tells"><span>eve</span></div>
-            <div class="title-charts-cont" id="a"><span>ry</span></div>
-            <div class="title-charts-cont" id="st"><span>d</span></div>
-            <div class="title-charts-cont" id="ory"><span>ay</span></div>
-          </div>
-        </div>
-        <div class="first-desc">
-          <span class="desc-1">with mero</span>
-        </div>
-        <div class="second-desc">
-          <span class="desc-1">2026 spring</span>
-        </div>
-      </div>
+  <canvas class="webgl"></canvas>
+<div id="overlay">
+  <div class="brand">
+    <div class="logo">NUMERO31</div>
+    <div class="sub">MERO · Hanbok Edition (Expo)</div>
+  </div>
+
+  <div class="cta">
+    <button id="btnLookbook" class="primary">LOOKBOOK</button>
+    <a id="btnInstagram" class="ghost" href="#" target="_blank" rel="noopener">INSTAGRAM</a>
+    <a id="btnYoutube" class="ghost" href="#" target="_blank" rel="noopener">YOUTUBE</a>
+  </div>
+
+  <div class="hint">Drag · Scroll · Click portal to enter lookbook</div>
+</div>
+
+
+<script type="x-shader/x-vertex" id="vertexShader">
+  precision highp float;
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * modelViewPosition; 
+  }
+</script>
+
+<script type="x-shader/x-fragment" id="fragmentShader">
+  #define PI 3.1415
+  #define TAU 6.2832
+  uniform sampler2D map;
+  uniform sampler2D noiseMap;
+  uniform float time;
+  uniform float effectIntensity;
+  uniform float effectMultiplier;
+  varying vec2 vUv;
   
-      <div class="copyright">
-        <span class="desc-1">2026 ALL RIGHTS RESERVED ©</span>
-      </div>
-      
-      <div class="scroll-to">
-        <div class="scroll-to__row">
-          <span class="desc-1">Scroll to</span>
-        </div>
-        <div class="scroll-to__row">
-          <span class="desc-1">find out more</span>
-        </div>
-      </div>
-      <div class="book-btn">
-        <div class="book-btn__circle"></div>
-        <div class="btn-text">
-          <span class="btn-1">
-            casual your bag
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js"></script><script  src="./script.js"></script>
+  void main() {
+    
+    // center uv
+    vec2 vUv2 = vUv - .5; 
+    // get each point angle
+    float angle = atan(vUv2.y, vUv2.x); 
+    // get distance to each point
+    float l = length(vUv2); 
+    float l2 = pow(l, .5);
+    
+    // create a radial moving noise 
+    float u = angle * 2. / TAU + time * .1;
+    float v = fract(l + time * .2);
+    vec4 noise = texture2D( noiseMap, vec2(u, v));
+    
+    // create waves
+    float noiseDisp = noise.r * noise.g * 4. * effectMultiplier;
+    float radialMask = l;
+    float wavesCount = 5.0;
+    float wavesSpeed = time * 5.;
+    float pnt = sin(2.0 * l * PI * wavesCount + noiseDisp + wavesSpeed) * radialMask;
+    
+    // calculate displacement according to waves
+    float dx = pnt * cos(angle) ;
+    
+    // normalize
+    float dy = pnt * sin(angle);
+    
+    // sample texture and apply wave displacement
+    vec4 color = texture2D( map, vUv + vec2(dx,dy) * l * .3 * effectIntensity * effectMultiplier);
+    
+    // lighten according to waves
+    color *= 1. + pnt * .5 * effectIntensity;
+    
+    // highlights 
+    float highlight = smoothstep(.0, .2, dx * dy);
+    color += highlight * effectIntensity;
+    
+    // gradient greyscale at the borders
+    float grey = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+    color.rgb = mix(color.rgb, vec3(grey), effectIntensity * l * effectMultiplier);
+    
+    // add redish color at the borders
+    color.r += smoothstep( .1, .7, l) * .5 * effectIntensity;
+   
+    gl_FragColor = linearToOutputTexel(color);
+    //gl_FragColor = linearToOutputTexel(vec4(highlight,highlight,highlight,1.));
+    
+  }
+</script>
+    <script type="module" src="./script.js"></script>
 
   </body>
   
