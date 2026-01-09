@@ -10,7 +10,7 @@ function isMobile() {
 }
 
 const FILES = {
-  desertFile: "https://assets.chorongwork.uk/hanbok_v2.glb",
+  desertFile: "https://assets.chorongwork.uk/hanbok_v3.glb",
   forestFile: "https://assets.chorongwork.uk/hanbok_v2.glb",
   noiseFile: "https://assets.codepen.io/264161/noise_1.jpg" };
 
@@ -27,6 +27,21 @@ const LINKS = {
 document.addEventListener("DOMContentLoaded", () => new App());
 
 class App {
+  setLoading(pct) {
+  const fill = document.getElementById("loadingFill");
+  const text = document.getElementById("loadingText");
+  if (fill) fill.style.width = `${pct}%`;
+  if (text) text.textContent = `Loading ${pct}%`;
+}
+
+hideLoading() {
+  const el = document.getElementById("loading");
+  if (!el) return;
+  el.style.transition = "opacity 0.4s ease";
+  el.style.opacity = "0";
+  setTimeout(() => el.remove(), 450);
+}
+
   constructor() {
     this.winWidth = window.innerWidth;
     this.winHeight = window.innerHeight;
@@ -41,10 +56,31 @@ class App {
   }
 
   async loadAssets() {
+     try {
+    this.setLoading(5);
+
     ASSETS.desertScene = await this.loadModel(FILES.desertFile);
+    this.setLoading(40);
+
     ASSETS.forestScene = await this.loadModel(FILES.forestFile);
+    this.setLoading(80);
+
     ASSETS.noiseMap = await this.loadTexture(FILES.noiseFile);
+    this.setLoading(95);
+
     this.initApp();
+
+    // 첫 프레임 렌더 후 로딩 제거
+    requestAnimationFrame(() => {
+      this.setLoading(100);
+      this.hideLoading();
+    });
+
+  } catch (e) {
+    console.error(e);
+    const text = document.getElementById("loadingText");
+    if (text) text.textContent = "Loading failed";
+  }
   }
 
   loadModel(file) {
@@ -170,8 +206,8 @@ bindOverlay() {
     this.renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
-      antialias: true,
-      preserveDrawingBuffer: true });
+      antialias: isMobile(),   // ✅ 모바일 OFF
+      preserveDrawingBuffer: false });
 
       
 
@@ -305,7 +341,7 @@ class World extends EventEmitter {
     this.scene = scene;
     this.name = name;
     this.camera = new THREE.PerspectiveCamera(60, this.winWidth / this.winHeight, 0.1, 150);
-    this.camera.position.set(0, 0, 30);
+    this.camera.position.set(0, -20, 30);
     this.scene.add(this.camera);
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
@@ -505,7 +541,7 @@ class Portal {
     textContent;
     const vertexShader = document.getElementById("vertexShader").textContent;
 
-    const rtSize = isMobile() ? 1024 : 2048;
+    const rtSize = isMobile() ? 512 : 2048;
 
     this.renderTarget = new THREE.WebGLRenderTarget(rtSize, rtSize, {
       type: THREE.HalfFloatType });
