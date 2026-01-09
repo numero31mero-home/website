@@ -7,7 +7,7 @@ import { EventEmitter } from "https://esm.sh/events";
 
 const FILES = {
   desertFile: "https://assets.codepen.io/264161/forest33.glb",
-  forestFile: "./assets/hanbok.glb",
+  forestFile: "https://assets.chorongwork.uk/hanbok_v2.glb",
   noiseFile: "https://assets.codepen.io/264161/noise_1.jpg" };
 
   
