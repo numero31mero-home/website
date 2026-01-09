@@ -49,19 +49,19 @@
   position: absolute;
   top: 22px;
   left: 26px;
-  color: #eaeaea;
+  color: #201f1f;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 #overlay .brand .logo{
-  font-size: 18px;
+  font-size: 30px;
   font-weight: 800;
 }
 
 #overlay .brand .sub{
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 15px;
   opacity: .8;
 }
 
@@ -76,14 +76,14 @@
 
 #overlay button,
 #overlay a{
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid rgba(234,234,234,.25);
   background: rgba(0,0,0,.25);
-  color: #eaeaea;
+  color: #fffefe;
   text-decoration: none;
   cursor: pointer;
 }
@@ -95,9 +95,53 @@
 #overlay .hint{
   position: absolute;
   right: 26px;
-  bottom: 26px;
+  bottom: 40px;
   color: rgba(234,234,234,.7);
-  font-size: 11px;
+  font-size: 15px;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+}
+
+.loading-inner {
+  width: min(360px, 80vw);
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.loading-title {
+  font-size: 14px;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#loadingFill {
+  width: 0%;
+  height: 100%;
+  background: #fff;
+  transition: width 0.2s ease;
+}
+
+#loadingText {
+  font-size: 12px;
+  margin-top: 10px;
+  opacity: 0.8;
 }
