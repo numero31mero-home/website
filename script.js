@@ -10,7 +10,7 @@ function isMobile() {
 }
 
 const FILES = {
-  desertFile: "https://assets.codepen.io/264161/forest33.glb",
+  desertFile: "https://assets.chorongwork.uk/hanbok_v2.glb",
   forestFile: "https://assets.chorongwork.uk/hanbok_v2.glb",
   noiseFile: "https://assets.codepen.io/264161/noise_1.jpg" };
 
