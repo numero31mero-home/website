@@ -169,7 +169,7 @@ bindOverlay() {
       antialias: true,
       preserveDrawingBuffer: true });
 
-
+this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.toneMapping = THREE.CineonToneMapping;
@@ -300,6 +300,14 @@ class World extends EventEmitter {
     this.camera.position.set(0, 0, 30);
     this.scene.add(this.camera);
 
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
+this.scene.add(hemi);
+
+const dir = new THREE.DirectionalLight(0xffffff, 2.0);
+dir.position.set(5, 10, 5);
+this.scene.add(dir);
+
+
     this.transitionDuration = 1.5;
     this.processModel();
   }
@@ -316,6 +324,9 @@ class World extends EventEmitter {
 
     // virtual object used as a target for the camera to look at
     this.cameraTarget = new THREE.Object3D();
+
+       
+  
   }
 
   setTransitionTransforms(startObject, endObject) {
