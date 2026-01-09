@@ -175,12 +175,14 @@ bindOverlay() {
 
       
 
-this.renderer.outputColorSpace = THREE.SRGBColorSpace;
-    this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.toneMapping = THREE.CineonToneMapping;
-    this.renderer.localClippingEnabled = true;
-  }
+ this.renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio, isMobile() ? 1.5 : 2)
+  );
+
+  this.renderer.setSize(window.innerWidth, window.innerHeight);
+  this.renderer.toneMapping = THREE.CineonToneMapping;
+  this.renderer.localClippingEnabled = true;
+}
 
   createControls() {
     this.controls = new OrbitControls(
