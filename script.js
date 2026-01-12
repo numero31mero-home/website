@@ -21,7 +21,8 @@ const ASSETS = {};
 const LINKS = {
   instagram: "https://instagram.com/numero31_x_mero",
   youtube: "https://youtube.com/@NUMERO31_channel",
-  lookbookHash: "#lookbook"
+  lookbookHash: "#lookbook",
+  aboutUrl: "./about.html"   // ✅ dist/about.html
 };
 
 document.addEventListener("DOMContentLoaded", () => new App());
@@ -117,7 +118,7 @@ bindOverlay() {
   const ig = document.getElementById("btnInstagram");
   const yt = document.getElementById("btnYoutube");
   const lb = document.getElementById("btnLookbook");
-
+  const about = document.getElementById("btnAbout");
   if (ig) ig.href = LINKS.instagram;
   if (yt) yt.href = LINKS.youtube;
 
