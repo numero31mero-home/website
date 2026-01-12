@@ -69,13 +69,14 @@ main.flex__col {
 
 .clip__inner {
   position: relative;
-  width: 100%;
+  text-align: center;
+  width: 90%;
   height: 100vh;
 }
 
 .clip__inner h1 {
   align-items: flex-end;
-  height: 40vh;
+  height: 30vh;
   font-size: var(--fontSizeH1);
   text-align: center;
   max-width: var(--maxWidth);
@@ -112,6 +113,7 @@ main.flex__col {
 
 .clip__scroll h2 {
   color: #fff;
+  text-align: center;
   font-size: var(--fontSizeH1);
   margin: 0 0 6vw 0;
 }
@@ -134,7 +136,7 @@ main.flex__col {
   top: 50%;
   left: 50%;
   margin: 0;
-  width: 200px;
+  width: 100vw;
   height: auto;
   aspect-ratio: 1/1;
   transform: translate(-50%, -50%);
@@ -149,7 +151,7 @@ main.flex__col {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
+  width: 100%;
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
@@ -157,7 +159,7 @@ main.flex__col {
 }
 
 @media (orientation: portrait) {
-  .starSvg img, .starSvg video {
+  .starSvg img {
     width: auto;
     height: 100vh;
   }
@@ -177,7 +179,7 @@ main.flex__col {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   :root {
     --fontSizeMenu: 11px;
     --fontSizeP: 11px;
