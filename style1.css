@@ -12,6 +12,7 @@ body {
   margin: 0;
   background-color: #f7f0ea;
   font-family: var(--font1);
+  font-weight: 400;
   overflow-x: hidden;
 }
 
@@ -80,13 +81,13 @@ main.flex__col {
   font-size: var(--fontSizeH1);
   text-align: center;
   max-width: var(--maxWidth);
-  margin: 5vw 0;
+  margin: 0 0 7vw 0;
 }
 
 .clip__cols {
   width: 70vw;
   height: 45vh;
-  gap: 40px;
+  gap: 50px;
   
   align-items: flex-start;
   max-width: var(--maxWidth);
@@ -119,7 +120,7 @@ main.flex__col {
   color: #000000;
   text-align: center;
   font-size: var(--fontSizeH1);
-  margin: 0 0 6vw 0;
+  margin: 0 0 7vw 0;
 }
 
 .clip__scroll .clip__cols {
@@ -135,14 +136,13 @@ main.flex__col {
   display: none;
 }
 
+
 .starSvg {
   position: fixed;
   z-index: 2;
   top: 50%;
   left: 50%;
-  margin: 0;
   width: 200px;
-  height: auto;
   aspect-ratio: 1/1;
   transform: translate(-50%, -50%);
 }
@@ -159,8 +159,8 @@ main.flex__col {
   width: 100vw;
   height: auto;
   aspect-ratio: 1/1;
-  object-fit: contain;
-  transform: translate(-50%,-50%);
+  object-fit: cover;
+  transform: translate(-50%, -50%);
 }
 
 @media (orientation: portrait) {
@@ -207,24 +207,25 @@ main.flex__col {
   }
   .clip__cols {
     width: 90vw;
-    gap: 10px;
+    gap: 20px;
     flex-direction: column;
     justify-content: flex-start;
   }
   .clip__cols p {
-    width: 90%;
+    width: 100%;
     
   }
   .starSvg {
-    width: 70px;
-  }
+    width: min(420px, 88vw);
+    aspect-ratio: 1 / 1;
+      }
   /* 1024px 가로 기준으로 '전체 보이기' */
 .media-fit{
   width: 100%;
-  max-width: 1024px;   /* 핵심 */
-  height: auto;
+   height: 100%;
   display: block;
-  margin: 0 auto;      /* 가운데 정렬 */
-  object-fit: contain; /* 절대 크롭 없음 */
+  margin: 0 ;      /* 가운데 정렬 */
+  object-fit: cover; /* 크롭 있음(대신 꽉 참)*/
 }
+
 }
