@@ -117,7 +117,8 @@ main.flex__col {
 }
 
 .clip__scroll h2 {
-  color: #000000;
+  color: #313131;
+   text-shadow: 0 0 2px rgba(255, 255, 255, 0.534);
   text-align: center;
   font-size: var(--fontSizeH1);
   margin: 0 0 7vw 0;
@@ -128,11 +129,11 @@ main.flex__col {
 }
 
 .clip__scroll p, .clip__scroll a {
-  color: #000000;
-  
+  color: #313131;
+  text-shadow: 0 0 1px rgba(201, 201, 201, 0.639);
 }
 
-#svg__rec, #svg__rec2, #svg__rec3, #svg__rec4 {
+#svg__rec, #svg__rec2, #svg__rec3, #svg__rec4, #svg__rec5 {
   display: none;
 }
 
@@ -151,6 +152,7 @@ main.flex__col {
 #svg2 {clip-path: url(#svg__path2)}
 #svg3 {clip-path: url(#svg__path3)}
 #svg4 {clip-path: url(#svg__path4)}
+#svg5 {clip-path: url(#svg__path5)}
 
 .starSvg img, .starSvg video {
   position: absolute;
