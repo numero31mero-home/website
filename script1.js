@@ -5,7 +5,11 @@ gsap.registerPlugin(ScrollTrigger);
 ["#svg1","#svg2","#svg3","#svg4","#svg5"].forEach(id=>{
   gsap.set(id, { left:"50%", top:"50%", xPercent:-50, yPercent:-50, x:0, y:0 });
 });
-
+const hideUp = (sel) => {
+  const el = document.querySelector(sel);
+  const h = el ? el.getBoundingClientRect().height : window.innerHeight;
+  return -(h + window.innerHeight * 0.2); // 여유 20%
+};
 // First star
 const GAP = window.innerHeight * 1.2;
 var svg1TL = gsap.timeline({
@@ -29,6 +33,10 @@ svg1TL.fromTo(
   { width: () => (window.innerWidth < window.innerHeight ? "100vh" : "100vw"), ease:"none" },
   0
 );
+svg1TL.to("#svg1", {
+  onStart: () => document.querySelector("#svg1").classList.add("is-full"),
+  onReverseComplete: () => document.querySelector("#svg1").classList.remove("is-full")
+}, 0.7);
 
 // Stars 2,3,4,5 could be in a function
 // Second star
@@ -46,8 +54,8 @@ var trans12 = gsap.timeline({
 });
 
 trans12
-  .to("#svg1", { y: "-100svh", ease:"none" }, 0)
-  .to("#svg2", { y: 0,        ease:"none" }, 0.6);
+  .to("#svg1", { y: () => hideUp("#svg1"), ease: "none" }, 0)
+  .to("#svg2", { y: 0,        ease:"none" }, 0.2);
 
 var svg2TL = gsap.timeline({
   scrollTrigger: {
@@ -68,6 +76,12 @@ svg2TL.fromTo(
   { width: () => (window.innerWidth < window.innerHeight ? "100vh" : "100vw"), ease:"none" },
   0
 );
+
+svg2TL.to("#svg2", {
+  onStart: () => document.querySelector("#svg2").classList.add("is-full"),
+  onReverseComplete: () => document.querySelector("#svg2").classList.remove("is-full")
+}, 0.9);
+
 // Third star
 gsap.set("#svg3", { y: "100svh" });
 
@@ -82,8 +96,8 @@ var trans23 = gsap.timeline({
 });
 
 trans23
-  .to("#svg2", { y: "-100svh", ease:"none" }, 0)
-  .to("#svg3", { y: 0,        ease:"none" }, 0.6);
+  .to("#svg2", { y: () => hideUp("#svg2"), ease: "none" }, 0)
+  .to("#svg3", { y: 0,        ease:"none" }, 0.2);
 
 var svg3TL = gsap.timeline({
   scrollTrigger: {
@@ -103,7 +117,10 @@ svg3TL.fromTo(
   { width: () => (window.innerWidth < window.innerHeight ? "100vh" : "100vw"), ease:"none" },
   0
 );
-
+svg3TL.to("#svg3", {
+  onStart: () => document.querySelector("#svg3").classList.add("is-full"),
+  onReverseComplete: () => document.querySelector("#svg3").classList.remove("is-full")
+}, 0.9);
 // Four star
 gsap.set("#svg4", { y: "100svh" });
 
@@ -118,8 +135,8 @@ var trans34 = gsap.timeline({
 });
 
 trans34
-  .to("#svg3", { y: "-100svh", ease:"none" }, 0)
-  .to("#svg4", { y: 0,        ease:"none" }, 0.6);
+  .to("#svg3", { y: () => hideUp("#svg3"), ease: "none" }, 0)
+  .to("#svg4", { y: 0,        ease:"none" }, 0.2);
 
 var svg4TL = gsap.timeline({
   scrollTrigger: {
@@ -140,7 +157,10 @@ svg4TL.fromTo(
   0
 );
 
-
+svg4TL.to("#svg4", {
+  onStart: () => document.querySelector("#svg4").classList.add("is-full"),
+  onReverseComplete: () => document.querySelector("#svg4").classList.remove("is-full")
+}, 0.9);
 // five star
 gsap.set("#svg5", { y: "100svh" });
 
@@ -155,8 +175,8 @@ var trans45 = gsap.timeline({
 });
 
 trans45
-  .to("#svg4", { y: "-100svh", ease:"none" }, 0)
-  .to("#svg5", { y: 0,        ease:"none" }, 0.6);
+  .to("#svg4", { y: () => hideUp("#svg4"), ease: "none" }, 0)
+  .to("#svg5", { y: 0,        ease:"none" }, 0.2);
 
 var svg5TL = gsap.timeline({
   scrollTrigger: {
@@ -176,5 +196,12 @@ svg5TL.fromTo(
   { width: () => (window.innerWidth < window.innerHeight ? "100vh" : "100vw"), ease:"none" },
   0
 );
+svg5TL.to("#svg5", {
+  onStart: () => document.querySelector("#svg5").classList.add("is-full"),
+  onReverseComplete: () => document.querySelector("#svg5").classList.remove("is-full")
+}, 0.9);
+
+
 window.addEventListener("load", () => ScrollTrigger.refresh());
 window.addEventListener("resize", () => ScrollTrigger.refresh());
+
