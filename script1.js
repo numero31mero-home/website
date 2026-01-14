@@ -74,3 +74,7 @@ var svg4TL = gsap.timeline({scrollTrigger: {
 svg4TL.fromTo("#svg4 video, #svg4 img", {y: "30%"}, {y: 0}, 0)
 svg4TL.to("#svg__star4", {morphSVG: {shape: "#svg__rec4", origin: "50% 50%"}}, 0);
 svg4TL.fromTo("#svg4", {width: () => {if(window.innerWidth < 600) {return 70} else {return 200}}}, {width: () => {if(window.innerWidth < window.innerHeight){return "100vh"} else {return "100vw"}}, ease: "none"}, 0);
+
+document.getElementById("btnBack")?.addEventListener("click", () => {
+  window.history.back();
+});
