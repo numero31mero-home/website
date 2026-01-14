@@ -12,7 +12,6 @@ body {
   margin: 0;
   background-color: #f7f0ea;
   font-family: var(--font1);
-  font-weight: 400;
   overflow-x: hidden;
 }
 
@@ -50,7 +49,7 @@ main.flex__col {
 
 .menu a {
   font-size: var(--fontSizeMenu);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dark);
   text-decoration: none;
 }
@@ -65,13 +64,11 @@ main.flex__col {
 
 .clip {
   width: 100%;
-  height: 100vh;
-  z-index: 3;
+  height: 150vh;
 }
 
 .clip__inner {
   position: relative;
-  
   width: 100%;
   height: 100vh;
 }
@@ -82,14 +79,13 @@ main.flex__col {
   font-size: var(--fontSizeH1);
   text-align: center;
   max-width: var(--maxWidth);
-  margin: 0 0 7vw 0;
+  margin: 5vw 0;
 }
 
 .clip__cols {
   width: 70vw;
   height: 45vh;
-  gap: 50px;
-  
+  gap: 40px;
   align-items: flex-start;
   max-width: var(--maxWidth);
 }
@@ -97,7 +93,6 @@ main.flex__col {
 .clip__cols p {
   font-size: var(--fontSizeP);
   width: 50%;
-  
 }
 
 .clip__cols a {
@@ -108,22 +103,25 @@ main.flex__col {
   z-index: 3;
   width: 100vw;
   height: 100vh;
-  padding-top: 0;
-  
+  padding-top: 100vh;
 }
 
 #clip1__scroll {
   padding-top: 0;
-  text-align: center;
-   min-height: 120vh;
 }
 
 .clip__scroll h2 {
-  color: #000000;
-   text-shadow: 0 0 2px rgb(255, 255, 255);
-  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 2px rgb(6, 6, 6);
   font-size: var(--fontSizeH1);
-  margin: 0 0 7vw 0;
+  margin: 0 0 6vw 0;
+}
+
+.clip__scroll h3 {
+  color: #fff;
+  text-shadow: 0 0 2px rgb(6, 6, 6);
+  font-size: var(--fontSizeH2);
+  margin: 0 0 6vw 0;
 }
 
 .clip__scroll .clip__cols {
@@ -131,32 +129,12 @@ main.flex__col {
 }
 
 .clip__scroll p, .clip__scroll a {
-  color: #000000;
-  font-weight: 600;
-  text-shadow: 0 0 2px rgb(201, 201, 201);
+  color: #fff;
+  text-shadow: 0 0 2px rgb(6, 6, 6);
 }
 
-#svg__rec, #svg__rec2, #svg__rec3, #svg__rec4, #svg__rec5 {
+#svg__rec, #svg__rec2, #svg__rec3, #svg__rec4 {
   display: none;
-}
-
-.starSvg.is-full{
-  width: 100vw !important;
-  height: 100vh !important;
-  aspect-ratio: auto !important;
-
-  clip-path: none !important;
-  -webkit-clip-path: none !important;
-
-  overflow: hidden !important;
-}
-
-.starSvg.is-full img,
-.starSvg.is-full video{
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  object-position: center center !important;
 }
 
 .starSvg {
@@ -164,21 +142,17 @@ main.flex__col {
   z-index: 2;
   top: 50%;
   left: 50%;
+  margin: 0;
   width: 200px;
+  height: auto;
   aspect-ratio: 1/1;
   transform: translate(-50%, -50%);
-  max-height: 100vh;
-  max-width: 100vw;
-  overflow: hidden;
 }
 
 #svg1 {clip-path: url(#svg__path)}
 #svg2 {clip-path: url(#svg__path2)}
 #svg3 {clip-path: url(#svg__path3)}
 #svg4 {clip-path: url(#svg__path4)}
-#svg5 {clip-path: url(#svg__path5)}
-
-
 
 .starSvg img, .starSvg video {
   position: absolute;
@@ -188,19 +162,13 @@ main.flex__col {
   height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
-  transform: translate(-50%, -50%);
-   opacity: 0.8
+  transform: translate(-50%,-50%);
 }
 
 @media (orientation: portrait) {
   .starSvg img, .starSvg video {
-    width: 100vw;
-    height: 100vh;            /* 100vh 대신(모바일 주소창 이슈 완화) */
-    object-fit: cover;
-    object-position: top center; /* 핵심: 상단부터 보이게 */
-    top: 0;                     /* 핵심: 중앙정렬 해제 */
-    left: 50%;
-    transform: translateX(-50%); /* Y축 중앙정렬 제거 */
+    width: auto;
+    height: 100vh;
   }
 }
 
@@ -235,35 +203,20 @@ main.flex__col {
     justify-content: flex-start;
     margin: 60px 0;
   }
-    .clip__scroll {
-    min-height: 200vh; /* 140~200vh 사이 조절 */
-  }
+  
   .clip__scroll h2 {
     width: 90vw;
   }
   .clip__cols {
     width: 90vw;
-    gap: 20px;
+    gap: 10px;
     flex-direction: column;
     justify-content: flex-start;
   }
   .clip__cols p {
     width: 100%;
-    
   }
   .starSvg {
-    width: min(420px, 88vw);
-    aspect-ratio: 1 / 1;
-      }
-  /* 1024px 가로 기준으로 '전체 보이기' */
-.media-fit{
-  width: 100%;
-   height: 100%;
-  display: block;
-  margin: 0 ;      /* 가운데 정렬 */
-  object-fit: cover; /* 크롭 있음(대신 꽉 참)*/
-  object-position: top center; /* 핵심: 상단부터 보이게 */
-}
-
- .clip { height: 240vh; }
+    width: 70px;
+  }
 }
