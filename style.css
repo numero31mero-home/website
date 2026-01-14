@@ -145,3 +145,15 @@
   margin-top: 10px;
   opacity: 0.8;
 }
+
+@media (max-width: 600px) {
+  #overlay.btn {
+    font-size: 16px;          /* 글자 크기 */
+    padding: 14px 22px;       /* 터치 영역 */
+    border-radius: 12px;   
+      /* 버튼 느낌 강화 */
+     min-width: 140px;
+    text-align: center;
+    
+  }
+}
