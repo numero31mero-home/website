@@ -1,3 +1,5 @@
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 ["#svg1","#svg2","#svg3","#svg4","#svg5"].forEach(id=>{
@@ -5,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 });
 
 // First star
+const GAP = window.innerHeight * 1.2;
 var svg1TL = gsap.timeline({
   scrollTrigger: {
     trigger: "#clip1 .clip__inner",
@@ -29,7 +32,8 @@ svg1TL.fromTo(
 
 // Stars 2,3,4,5 could be in a function
 // Second star
-gsap.set("#svg2", { y: "100vh" });
+
+gsap.set("#svg2", { y: GAP });
 
 var trans12 = gsap.timeline({
   scrollTrigger: {
@@ -42,8 +46,8 @@ var trans12 = gsap.timeline({
 });
 
 trans12
-  .to("#svg1", { y: "-100vh", ease:"none" }, 0)
-  .to("#svg2", { y: 0,        ease:"none" }, 0);
+  .to("#svg1", { y: "-100svh", ease:"none" }, 0)
+  .to("#svg2", { y: 0,        ease:"none" }, 0.6);
 
 var svg2TL = gsap.timeline({
   scrollTrigger: {
@@ -65,7 +69,7 @@ svg2TL.fromTo(
   0
 );
 // Third star
-gsap.set("#svg3", { y: "100vh" });
+gsap.set("#svg3", { y: "100svh" });
 
 var trans23 = gsap.timeline({
   scrollTrigger: {
@@ -78,8 +82,8 @@ var trans23 = gsap.timeline({
 });
 
 trans23
-  .to("#svg2", { y: "-100vh", ease:"none" }, 0)
-  .to("#svg3", { y: 0,        ease:"none" }, 0);
+  .to("#svg2", { y: "-100svh", ease:"none" }, 0)
+  .to("#svg3", { y: 0,        ease:"none" }, 0.6);
 
 var svg3TL = gsap.timeline({
   scrollTrigger: {
@@ -101,7 +105,7 @@ svg3TL.fromTo(
 );
 
 // Four star
-gsap.set("#svg4", { y: "100vh" });
+gsap.set("#svg4", { y: "100svh" });
 
 var trans34 = gsap.timeline({
   scrollTrigger: {
@@ -114,8 +118,8 @@ var trans34 = gsap.timeline({
 });
 
 trans34
-  .to("#svg3", { y: "-100vh", ease:"none" }, 0)
-  .to("#svg4", { y: 0,        ease:"none" }, 0);
+  .to("#svg3", { y: "-100svh", ease:"none" }, 0)
+  .to("#svg4", { y: 0,        ease:"none" }, 0.6);
 
 var svg4TL = gsap.timeline({
   scrollTrigger: {
@@ -138,7 +142,7 @@ svg4TL.fromTo(
 
 
 // five star
-gsap.set("#svg5", { y: "100vh" });
+gsap.set("#svg5", { y: "100svh" });
 
 var trans45 = gsap.timeline({
   scrollTrigger: {
@@ -151,8 +155,8 @@ var trans45 = gsap.timeline({
 });
 
 trans45
-  .to("#svg4", { y: "-100vh", ease:"none" }, 0)
-  .to("#svg5", { y: 0,        ease:"none" }, 0);
+  .to("#svg4", { y: "-100svh", ease:"none" }, 0)
+  .to("#svg5", { y: 0,        ease:"none" }, 0.6);
 
 var svg5TL = gsap.timeline({
   scrollTrigger: {
