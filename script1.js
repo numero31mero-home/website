@@ -1,3 +1,7 @@
+["#svg1","#svg2","#svg3","#svg4"].forEach(id=>{
+  gsap.set(id, { left:"50%", top:"50%", xPercent:-50, yPercent:-50, x:0 });
+});
+
 // First star
 var svg1TL = gsap.timeline({scrollTrigger: {
   trigger: "#clip1 .clip__inner",
