@@ -175,6 +175,7 @@ main.flex__col {
     top: 0;                     /* 핵심: 중앙정렬 해제 */
     left: 50%;
     transform: translateX(-50%); /* Y축 중앙정렬 제거 */
+     opacity: 0.8;
   }
 }
 
