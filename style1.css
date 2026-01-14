@@ -107,7 +107,7 @@ main.flex__col {
   z-index: 3;
   width: 100vw;
   height: 100vh;
-  padding-top: 100vh;
+  padding-top: 0;
   
 }
 
@@ -117,8 +117,8 @@ main.flex__col {
 }
 
 .clip__scroll h2 {
-  color: #313131;
-   text-shadow: 0 0 1px rgb(255, 255, 255);
+  color: #000000;
+   text-shadow: 0 0 2px rgb(255, 255, 255);
   text-align: center;
   font-size: var(--fontSizeH1);
   margin: 0 0 7vw 0;
@@ -129,8 +129,9 @@ main.flex__col {
 }
 
 .clip__scroll p, .clip__scroll a {
-  color: #313131;
-  text-shadow: 0 0 0.5px rgb(201, 201, 201);
+  color: #000000;
+  font-weight: 600;
+  text-shadow: 0 0 2px rgb(201, 201, 201);
 }
 
 #svg__rec, #svg__rec2, #svg__rec3, #svg__rec4, #svg__rec5 {
