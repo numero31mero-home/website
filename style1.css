@@ -112,14 +112,14 @@ main.flex__col {
 
 .clip__scroll h2 {
   color: #fff;
-  text-shadow: 0 0 2px rgb(6, 6, 6);
+  text-shadow: 0 0 3px rgb(0, 0, 0);
   font-size: var(--fontSizeH1);
   margin: 0 0 6vw 0;
 }
 
 .clip__scroll h3 {
   color: #fff;
-  text-shadow: 0 0 2px rgb(6, 6, 6);
+  text-shadow: 0 0 3px rgb(0, 0, 0);
   font-size: var(--fontSizeH2);
   margin: 0 0 6vw 0;
 }
@@ -130,7 +130,7 @@ main.flex__col {
 
 .clip__scroll p, .clip__scroll a {
   color: #fff;
-  text-shadow: 0 0 2px rgb(6, 6, 6);
+  text-shadow: 0 0 3px rgb(0, 0, 0);
 }
 
 #svg__rec, #svg__rec2, #svg__rec3, #svg__rec4 {
