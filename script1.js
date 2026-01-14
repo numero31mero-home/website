@@ -1,3 +1,8 @@
+
+window.addEventListener("DOMContentLoaded", () => {
+  gsap.to("#svg__star", { opacity: 1 });
+});
+
 ["#svg1","#svg2","#svg3","#svg4","#svg5"].forEach(id=>{
   gsap.set(id, { left:"50%", top:"50%", xPercent:-50, yPercent:-50, x:0 });
 });
@@ -12,10 +17,10 @@ var svg1TL = gsap.timeline({scrollTrigger: {
 }})
 
 svg1TL.fromTo("#svg1 video, #svg1 img", {y: "30%"}, {y: 0}, 0)
-svg1TL.to("#svg__star", {morphSVG: {shape: "#svg__rec", origin: "50% 50%"}, ease: "none"}, 0);
+svg1TL.to("#svg1__star", {morphSVG: {shape: "#svg__rec", origin: "50% 50%"}, ease: "none"}, 0);
 svg1TL.fromTo("#svg1", {width: () => {if(window.innerWidth < 600) {return 70} else {return 200}}}, {width: () => {if(window.innerWidth < window.innerHeight){return "100vh"} else {return "100vw"}}, ease: "none"}, 0);
 
-// Stars 2,3,4 could be in a function
+// Stars 2,3,4,5 could be in a function
 // Second star
 gsap.set("#svg2", {y: "100vh"})
 gsap.to("#svg2", {y: 0, x: 0, scrollTrigger: {
