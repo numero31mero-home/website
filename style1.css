@@ -114,6 +114,7 @@ main.flex__col {
 #clip1__scroll {
   padding-top: 0;
   text-align: center;
+   min-height: 140vh;
 }
 
 .clip__scroll h2 {
@@ -138,6 +139,24 @@ main.flex__col {
   display: none;
 }
 
+.starSvg.is-full{
+  width: 100vw !important;
+  height: 100vh !important;
+  aspect-ratio: auto !important;
+
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+
+  overflow: hidden !important;
+}
+
+.starSvg.is-full img,
+.starSvg.is-full video{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+}
 
 .starSvg {
   position: fixed;
@@ -155,6 +174,8 @@ main.flex__col {
 #svg4 {clip-path: url(#svg__path4)}
 #svg5 {clip-path: url(#svg__path5)}
 
+
+
 .starSvg img, .starSvg video {
   position: absolute;
   top: 50%;
@@ -164,6 +185,7 @@ main.flex__col {
   aspect-ratio: 1/1;
   object-fit: cover;
   transform: translate(-50%, -50%);
+   opacity: 0.8
 }
 
 @media (orientation: portrait) {
@@ -175,7 +197,6 @@ main.flex__col {
     top: 0;                     /* 핵심: 중앙정렬 해제 */
     left: 50%;
     transform: translateX(-50%); /* Y축 중앙정렬 제거 */
-     opacity: 0.8;
   }
 }
 
@@ -210,7 +231,9 @@ main.flex__col {
     justify-content: flex-start;
     margin: 60px 0;
   }
-  
+    .clip__scroll {
+    min-height: 180vh; /* 140~200vh 사이 조절 */
+  }
   .clip__scroll h2 {
     width: 90vw;
   }
